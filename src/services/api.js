@@ -36,3 +36,22 @@ export async function Coffees(){
         return null;
     }
 }
+
+export async function crearCoffee(coffee){
+    try{
+        const token = localStorage.getItem('token');
+        const res = await fetch("http://localhost:8080/api/coffee/coffees",{
+            method:"POST",
+            body:coffee,
+            headers:{
+                'authorization':'Bearer ' + token,
+            },
+        });
+        const data = await res.json();
+        console.log("coffee creado", data);
+        return data;
+    }catch(error){
+        console.log(error);
+        return null;
+    }
+}

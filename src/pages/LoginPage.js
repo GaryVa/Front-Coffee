@@ -18,7 +18,7 @@ function LoginPage(){
         }
     }
 
-    return (
+    return <>
         <div >
         <div >
         <h1 >
@@ -26,7 +26,7 @@ function LoginPage(){
           </h1>
           <form  onSubmit={login}>
             <div>
-              <label htmlFor="email" >
+              <label htmlFor="username" >
                 usuario
               </label>
               <input
@@ -54,7 +54,7 @@ function LoginPage(){
           </form>
         </div>
       </div>
-    );
+      </>
 }
 
 export {LoginPage}
