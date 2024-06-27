@@ -7,10 +7,12 @@ export const AuthContext = React.createContext();
 
 export function AuthProvider({children}){
     const [auth, setAuth] = React.useState({token:null});
+    const [role, setRole] = React.useState("");
     React.useEffect(() => {
         const token = localStorage.getItem("token");
         if(token){
             setAuth({token:token})
+            setRole(jwtDecode(token).role)
         }
     }, [])
 
@@ -26,7 +28,7 @@ export function AuthProvider({children}){
         setAuth({token:null});
     }
 
-    return <AuthContext.Provider value={{auth, setToken, logout}}>
+    return <AuthContext.Provider value={{auth, setToken, role, logout}}>
         {children}
     </AuthContext.Provider>
 

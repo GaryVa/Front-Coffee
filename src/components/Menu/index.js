@@ -1,55 +1,65 @@
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContext";
 import React from "react";
+import "./index.css"
 
 function Menu(){
     
-    const {auth, logout} = React.useContext(AuthContext);
+    const {auth, logout, role} = React.useContext(AuthContext);
 
     if (auth.token){
         routes.splice(0, routes.length);
-        routes.push({to:"/", text:"Home"})
+        routes.push({to:"/", text:"Inicio"})
         routes.push({to:"/Coffees", text:"Coffees"})
-        routes.push({to:"/Gestion-coffee", text:"Gestion coffee"})
+        routes.push({to:"/acercaDe", text:"Acerca de"})
         
+        if (role === "ADMIN"){
+            routes.push({to:"/Gestion-coffee", text:"Gestion coffee"})
+            routes.push({to:"/Clientes", text:"Clientes"})
+        }
     }
 
     const cerrarSession = ()=>{
         logout();
         routes.splice(0, routes.length);
-        routes.push({to:"/", text:"Home"})
+        routes.push({to:"/", text:"Inicio"})
         routes.push({to:"/Coffees", text:"Coffees"})
+        routes.push({to:"/acercaDe", text:"Acerca de"})
         routes.push({to:"/login", text:"Iniciar session"})
+        routes.push({to:"/registro", text:"Registrarse"})
     }
 
     return <>
-        <h2>Menu</h2>
-        <ul>
+    <div className="Menu">
+        <div className="logo">
+            <h2>Menu</h2>
+        </div>
+
+        <div className="botones">
             {
              routes.map( (item, index)=>(
-                <li key={index}>
                     <NavLink 
-                        style={({isActive}) => ({color:isActive?"green":"blue"})}
-                        to={item.to}>
+                        to={item.to}
+                        className={"buton"}>
                         {item.text}
                     </NavLink>
-                </li>
              ) )
             }
 
             {
             auth.token?
-            <button onClick={cerrarSession}>Salir</button>:
+            <button className="buton" onClick={cerrarSession}>Salir</button>:
             ""
             }
-        </ul>
-
+        </div>
+        </div>
     </>
 }
 
 const routes = [];
 routes.splice(0, routes.length);
-routes.push({to:"/", text:"Home"})
+routes.push({to:"/", text:"Inicio"})
 routes.push({to:"/Coffees", text:"Coffees"})
+routes.push({to:"/acercaDe", text:"Acerca de"})
 routes.push({to:"/login", text:"Iniciar session"})
 export {Menu}

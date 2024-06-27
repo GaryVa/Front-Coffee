@@ -1,6 +1,7 @@
 import React from "react";
 import { CoffeeList } from "../components/coffees";
 import { BorrarCoffee, EditarCoffee, crearCoffee} from "../services/api";
+import "./GestionCoffee.css";
 
 
 
@@ -80,82 +81,84 @@ function GestionCoffee(){
 
     return <>
     <div className="gestion-Caffee">
-    <div className="Formulario">
-        <h1>{id_coffee? "Editar":"Agregar"} Coffee</h1>
-        <form onSubmit={Editar} encType="multipart/form-data">
-        <div>
-            <input type="hidden" value={id_coffee} readOnly required/>
+        <div className="Formulario">
+            <h1>{id_coffee? "Editar":"Agregar"} Coffee</h1>
+            <form onSubmit={Editar} encType="multipart/form-data">
+            <div className="id">
+                <input type="hidden" value={id_coffee} readOnly required/>
+            </div>
+            <div className="form-entrada">
+            <label>Nombre</label>
+            <input
+                type="Text"
+                name='nombre'
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder="Nombre"
+                />
+            </div>
+            <div className="form-entrada">
+            <label>Precio</label>
+            <input
+                type="Number"
+                name='precio'
+                value={precio}
+                onChange={(e) => setprecio(e.target.value)}
+                placeholder='Precio'
+                />
+            </div>
+            <div className="form-entrada">
+            <label>Descripcion</label>
+            <textarea
+                type="Text"
+                name='precio'
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                placeholder='Descripcion'
+                />
+            </div>
+            <div className="form-entrada">
+            <label>Imagen</label>
+            <input
+                type="file"
+                name='imagen'
+                className="button-foto"
+                onChange={File}
+                />
+            </div>
+            <div className="form-botones">
+            <button type="submit" >{id_coffee? "Guardar Cambios":"agregar"}</button>
+            <button type="button" onClick={limpiarFormulario}>Cancelar</button>
+            </div>
+        </form>
         </div>
-        <div>
-          <label>nombre</label>
-          <input
-            type="Text"
-            name='nombre'
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            />
+        <div className="Tabla">
+            <CoffeeList render={(cafes) =>(
+            <table border={1}>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>descripcion</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+                <tbody>
+                    {cafes.map((item) => (
+                        <tr key={item.idCoffee}>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                            <td>{item.price}</td>
+                            <td>
+                                <button onClick={()=> editar(item.idCoffee, item.name, item.description, item.price, item.image64)}>Editar</button>
+                                <button onClick={()=> Borrar(item.idCoffee)}>Borrar</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            )}/>
         </div>
-        <div>
-          <label>precio</label>
-          <input
-            type="Number"
-            name='precio'
-            value={precio}
-            onChange={(e) => setprecio(e.target.value)}
-            placeholder='precio'
-            />
-        </div>
-        <div>
-          <label>descripcion</label>
-          <textarea
-            type="Text"
-            name='precio'
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            placeholder='descripcion'
-            />
-        </div>
-        <div>
-          <label>imagen</label>
-          <input
-            type="file"
-            name='imagen'
-            onChange={File}
-            />
-        </div>
-        <div>
-          <button type="submit" >{id_coffee? "Guardar Cambios":"agregar"}</button>
-          <button type="button" onClick={limpiarFormulario}>Cancelar</button>
-        </div>
-      </form>
-    </div>
-    <div className="Tabla">
-        <CoffeeList render={(cafes) =>(
-        <table border={1}>
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>descripcion</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-            <tbody>
-                {cafes.map((item) => (
-                    <tr key={item.idCoffee}>
-                        <td>{item.name}</td>
-                        <td>{item.description}</td>
-                        <td>{item.price}</td>
-                        <td>
-                            <button onClick={()=> editar(item.idCoffee, item.name, item.description, item.price, item.image64)}>Editar</button>
-                            <button onClick={()=> Borrar(item.idCoffee)}>Borrar</button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-        )}/>
-    </div>
     </div>
     </>
 }

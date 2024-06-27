@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Menu {
+    background-color: rgb(112, 68, 11);
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.botones{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buton{
+    padding: 8px 16px;
+    background-color: #f7e0b6;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.buton:hover {
+    background-color: #ffd966;
+}
+
+.buton.active {
+    font-weight: bold;
+    color: green;
+}
