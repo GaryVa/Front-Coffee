@@ -9,18 +9,16 @@ function Menu(){
     if (auth.token){
         routes.splice(0, routes.length);
         routes.push({to:"/", text:"Home"})
-        routes.push({to:"/page1", text:"Pagina 1"})
-        routes.push({to:"/page2", text:"Pagina 2"})
-        routes.push({to:"/cursos", text:"Mis Cursos"})
-        routes.push({to:"/nuevo-coffee", text:"Crear coffee"})
+        routes.push({to:"/Coffees", text:"Coffees"})
+        routes.push({to:"/Gestion-coffee", text:"Gestion coffee"})
+        
     }
 
     const cerrarSession = ()=>{
         logout();
         routes.splice(0, routes.length);
         routes.push({to:"/", text:"Home"})
-        routes.push({to:"/page1", text:"Pagina 1"})
-        routes.push({to:"/cursos", text:"Mis Cursos"})
+        routes.push({to:"/Coffees", text:"Coffees"})
         routes.push({to:"/login", text:"Iniciar session"})
     }
 
@@ -50,6 +48,8 @@ function Menu(){
 }
 
 const routes = [];
-
-
+routes.splice(0, routes.length);
+routes.push({to:"/", text:"Home"})
+routes.push({to:"/Coffees", text:"Coffees"})
+routes.push({to:"/login", text:"Iniciar session"})
 export {Menu}
