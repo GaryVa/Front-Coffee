@@ -1,6 +1,5 @@
 import React from "react";
-import { CoffeeList } from "../components/coffees";
-import { BorrarCoffee, EditarCoffee, crearCoffee} from "../services/api";
+import { BorrarCoffee, Coffees, EditarCoffee, crearCoffee} from "../services/api";
 import "./GestionCoffee.css";
 
 
@@ -12,17 +11,39 @@ function GestionCoffee(){
     const [precio, setprecio] = React.useState("");
     const [foto, setFoto] = React.useState(null);
 
+    const [cafes, setCafes] = React.useState([]);
+    const [cont, setCont] = React.useState("");
+    
+
+    React.useEffect(() => {
+        async function obtenerCoffees() {
+            const data = await Coffees();
+            if (data) {
+                setCafes(data);
+            } else {
+                setCafes([]);
+            }
+        }
+        obtenerCoffees();
+    }, [cont]);
+
+
     const editar = (id, nombre, descripcion, precio, imagen64) => {
         setId_coffee(id);
         setNombre(nombre);
         setDesc(descripcion);
         setprecio(precio);
         setFoto(imagen64);
+        console.log("id", id);
     }
 
     const Borrar = async (idCoffee) => {
         try{
             const resp = await BorrarCoffee(idCoffee);
+            if (resp) {
+                setCont(cont+1);
+            }
+            console.log("id: ",idCoffee);
             console.log("coffee Eliminado", resp);
         }catch (error) {
             console.log("error al eliminar", error);
@@ -45,6 +66,9 @@ function GestionCoffee(){
                 formData.append("desc", desc);
                 formData.append("foto", foto);
                 const resp = await EditarCoffee(formData);
+                if (resp) {
+                    setCont(cont+1);
+                }
     
                 console.log("Editado", resp);
                 limpiarFormulario();
@@ -59,6 +83,9 @@ function GestionCoffee(){
                 formData.append("desc", desc);
                 formData.append("foto", foto);
                 const resp = await crearCoffee(formData);
+                if (resp) {
+                    setCont(cont+1);
+                }
     
                 console.log("creado", resp);
             }catch (error){
@@ -133,7 +160,7 @@ function GestionCoffee(){
         </form>
         </div>
         <div className="Tabla">
-            <CoffeeList render={(cafes) =>(
+           
             <table border={1}>
             <thead>
             <tr>
@@ -157,7 +184,7 @@ function GestionCoffee(){
                     ))}
                 </tbody>
             </table>
-            )}/>
+        
         </div>
     </div>
     </>

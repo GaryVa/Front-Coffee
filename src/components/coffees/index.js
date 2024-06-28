@@ -1,23 +1,26 @@
 import React from "react";
-import { Coffees } from "../../services/api";
 
-function CoffeeList({render}){
-    const [cafes, setCafes] = React.useState([]);
+function CoffeeList(props){
     
+return <>
 
-    React.useEffect(() => {
-        async function obtenerCoffees() {
-            const data = await Coffees();
-            if (data) {
-                setCafes(data);
-            } else {
-                setCafes([]);
-            }
-        }
-        obtenerCoffees();
-    }, []);
+    <div className="cards"> 
+                    {props.cafes?.map((item) => (
+                        <div key={item.idCoffee} className="card">
+                            {item.image64 && (
+                                <img 
+                                    src={`data:image/jpeg;base64,${item.image64}`}
+                                    alt={item.nombre}
+                                />
+                            )}
+                            <h3>{item.nombre}</h3>
+                            <p>{item.description}</p>
+                            <p>${item.price}</p>
 
-    return render(cafes);
+                        </div>
+                    ))}
+                </div>
+</>
 }
 
 export {CoffeeList};
