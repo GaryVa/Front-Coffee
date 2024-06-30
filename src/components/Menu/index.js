@@ -32,13 +32,13 @@ function Menu(){
     return <>
     <div className="Menu">
         <div className="logo">
-            <h2>Menu</h2>
         </div>
 
         <div className="botones">
             {
              routes.map( (item, index)=>(
-                    <NavLink 
+                    <NavLink
+                        key={index} 
                         to={item.to}
                         className={"buton"}>
                         {item.text}
@@ -62,4 +62,5 @@ routes.push({to:"/", text:"Inicio"})
 routes.push({to:"/Coffees", text:"Coffees"})
 routes.push({to:"/acercaDe", text:"Acerca de"})
 routes.push({to:"/login", text:"Iniciar session"})
+routes.push({to:"/registro", text:"Registrarse"})
 export {Menu}

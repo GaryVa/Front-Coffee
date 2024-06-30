@@ -19,13 +19,15 @@ export function AuthProvider({children}){
     const setToken = async (token)=>{
         localStorage.setItem("token", token);
         localStorage.setItem("role", jwtDecode(token).role)
-        setAuth({token:token})
+        setAuth({token:token});
+        setRole(jwtDecode(token).role);
     }
 
     const logout = ()=>{
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         setAuth({token:null});
+        setRole("");
     }
 
     return <AuthContext.Provider value={{auth, setToken, role, logout}}>

@@ -56,24 +56,7 @@ export async function crearCoffee(coffee){
     }
 }
 
-export async function crearTestimonios(testimonio){
-    try{
-        const token = localStorage.getItem('token');
-        const res = await fetch("http://localhost:8080/api/testimonials/ingresar",{
-            method:"POST",
-            body:testimonio,
-            headers:{
-                'authorization':'Bearer ' + token,
-            },
-        });
-        const data = await res.json();
-        console.log("testimonio creado", data);
-        return data;
-    }catch(error){
-        console.log(error);
-        return null;
-    }
-}
+
 
 export async function EditarCoffee(coffee){
     try{
@@ -107,6 +90,83 @@ export async function BorrarCoffee(coffeeId){
         return res;
     }catch(error){
         console.log(error);
+        return null;
+    }
+}
+
+export async function crearTestimonios(testimonio){
+    try{
+        const token = localStorage.getItem('token');
+        const res = await fetch("http://localhost:8080/api/testimonials/ingresar",{
+            method:"POST",
+            body:testimonio,
+            headers:{
+                'authorization':'Bearer ' + token,
+            },
+        });
+        const data = await res.json();
+        console.log("testimonio creado", data);
+        return data;
+    }catch(error){
+        console.log(error);
+        return null;
+    }
+}
+export async function listarTestimonios(idCoffee){
+    try {
+        const res = await fetch(`http://localhost:8080/api/testimonials/buscar?id_coffee=${idCoffee}`, {
+            method:"GET"
+        });
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function RegistroUser(datos){
+    try {
+        const res = await fetch("http://localhost:8080/api/auth/create", {
+            method:"POST",
+            body: JSON.stringify(datos),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return res;
+    } catch (error){
+        return null;
+    }
+}
+
+
+export async function ListarUsuarios(){
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:8080/api/auth/buscar", {
+            method:"GET",
+            headers:{
+                "authorization": "Bearer " + token,
+            },
+        });
+        return res;
+    } catch (error){
+        return null;
+    }
+}
+
+export async function Bloquear(usuario){
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:8080/api/auth/bloquear", {
+            method:"PUT",
+            body: usuario,
+            headers:{
+                "authorization": "Bearer " + token,
+            },
+        });
+        return res;
+    } catch (error) {
         return null;
     }
 }

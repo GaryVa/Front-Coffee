@@ -8,6 +8,7 @@ import { AuthProvider } from './auth/AuthContext';
 import { LoginPage } from './pages/LoginPage';
 import { PrivateRoute } from './auth/PrivateRoute';
 import { GestionCoffee } from './pages/GestionCoffeePage';
+import { Registro } from './pages/RegistroPage';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/> 
           <Route path="/Coffees" element={<Coffee />}/> 
-          <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/Login' element={<LoginPage/>}/>
+          <Route path='/Registro' element={<Registro/>}/>
           <Route path='/Gestion-coffee' element={<PrivateRoute><GestionCoffee /></PrivateRoute>}/>
           <Route path="*" element={<p>Ups, no existe la ruta</p>}/> 
         </Routes>

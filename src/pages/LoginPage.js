@@ -1,6 +1,7 @@
 import React from "react";
 import { AuthContext } from "../auth/AuthContext";
 import { loginAccount } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 
 function LoginPage(){
@@ -8,14 +9,22 @@ function LoginPage(){
     const [username, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const {setToken} = React.useContext(AuthContext);
+    const navigate = useNavigate();
     
-    const login = async()=>{
-        const resp = await loginAccount({username:username, password:password});
-        if(resp){
-            await setToken(resp.token);
-        } else{
-            console.log(resp);
+    const login = async(e)=>{
+        try{
+            e.preventDefault();
+            const resp = await loginAccount({username:username, password:password});
+            if(resp){
+                await setToken(resp.token);
+                navigate("/");
+            } else{
+                console.log(resp);
+            }
+        } catch (error) {
+            console.log("error inicio de seccion", error);
         }
+
     }
 
     return <>

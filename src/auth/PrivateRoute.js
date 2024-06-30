@@ -4,10 +4,21 @@ import React from "react";
 
 
 function PrivateRoute({children}){
-    const {auth} = React.useContext(AuthContext);
+    const {auth, role} = React.useContext(AuthContext);
     const location = useLocation();
 
-    return auth.token?(children):<Navigate to={"/login"} replace={{path: location.pathname}}></Navigate>
+    if (!auth.token) {
+        return <Navigate to={"/login"} state={{from: location}} replace />
+    }
+
+    const adminRutas = ["/Gestion-coffee", "/clientes"];
+
+    if (role === "CLIENT" && adminRutas.includes(location.pathname)){
+        return <Navigate to={"/"} state={{from: location}} replace />;
+    }
+
+    return <>{children}</>;
+
 }
 
 export {PrivateRoute};
