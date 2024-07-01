@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { RegistroUser } from "../services/api";
 import React from "react";
+import "./Registro.css";
 
 
 function Registro(){
@@ -30,52 +31,44 @@ function Registro(){
     }
 
     return <>
-
-    <div >
-        <h1 >
-            Registrarse
-            </h1>
-            <form  onSubmit={registrarUsarios}>
-                <div>
-                    <label htmlFor="username" >
-                        usuario
-                    </label>
-                    <input
-                        type="Text"
-                        name='username'
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Nombre"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">
-                        email
-                    </label>
-                    <input
-                        type="email"
-                        name='email'
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder='Email'
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">
-                        Contraseña
-                    </label>
-                    <input
-                        type="password"
-                        name='password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder='Contraseña'
-                    />
-                </div>
-                <div>
-                    <button type="submit" >
-                        Acceder
-                    </button>
-                </div>
-            </form>
-        </div>
+    <div className="Session">
+        <form  className="fomularioSession" onSubmit={registrarUsarios}>
+            <h1 className="hSession">Registrarse</h1>
+            <div className="usuario">
+                <label className="labelSession">Usuario</label>
+                <input 
+                    className="inputSession"
+                    type="Text"
+                    name='username'
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Nombre"
+                />
+            </div>
+            <div className="email">
+                <label className="labelSession">Email</label>
+                <input
+                    className="inputSession"
+                    type="email"
+                    name='email'
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Correo electronico'
+                />
+            </div>
+            <div className="contraseña">
+                <label className="labelSession">Contraseña</label>
+                <input
+                    className="inputSession"
+                    type="password"
+                    name='password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder='Contraseña'
+                />
+            </div>
+            <div>
+                <button className="botonSession">Acceder</button>
+            </div>
+        </form>
+    </div>
     </>
 
 }

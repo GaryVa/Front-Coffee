@@ -2,6 +2,7 @@ import React from "react";
 import { AuthContext } from "../auth/AuthContext";
 import { loginAccount } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import "./Registro.css"
 
 
 function LoginPage(){
@@ -28,27 +29,23 @@ function LoginPage(){
     }
 
     return <>
-        <div >
-        <div >
-        <h1 >
-            Iniciar Sesion
-          </h1>
-          <form  onSubmit={login}>
+        <div className="Session">
+          <form className="fomularioSession" onSubmit={login}>
+          <h1 className="hSession">Iniciar Sesion</h1>
             <div>
-              <label htmlFor="username" >
-                usuario
-              </label>
+              <label className="labelSession">Usuario</label>
               <input
+                className="inputSession"
                 type="Text"
                 name='username'
                 onChange={(e) => setUserName(e.target.value)}
+                placeholder="Nombre"
               />
             </div>
             <div>
-              <label htmlFor="password">
-                Contraseña
-              </label>
+              <label className="labelSession">Contraseña</label>
               <input
+                className="inputSession"
                 type="password"
                 name='password'
                 onChange={(e) => setPassword(e.target.value)}
@@ -56,13 +53,10 @@ function LoginPage(){
               />
             </div>
             <div>
-              <button type="submit" >
-                Acceder
-              </button>
+              <button className="botonSession" type="submit">Acceder</button>
             </div>
           </form>
         </div>
-      </div>
       </>
 }
 

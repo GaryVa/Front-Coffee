@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+}
+
+.Session {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fomularioSession {
+    width: 340px;
+    height: 440px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 40px -10px black;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.hSession {
+    margin: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.inputSession {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 0;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s;
+    border-bottom: 2px solid #bebed2;
+}
+.inputSession:focus {
+    border-bottom: 2px solid #676779;
+}
+
+.labelSession:before {
+    content: attr(type);
+    display: block;
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: #5a5a5a;
+}
+
+.botonSession {
+    float: right;
+    padding: 8px 12px;
+    margin: 8px 0 0;
+    font-family: sans-serif;
+    border: 2px solid gray;
+    background: 0;
+    color: #5a5a6e;
+    transition: all 0.3s;
+}
+
+.botonSession:hover {
+    background: #78788c;
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+.Portada {
+    background: rgb(71, 39, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.textoPortada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    color: white;
+    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+}
+
+.imagenPortada {
+    margin: auto;
+    padding: 0;
+    width: 300px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    animation: rotar 40s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotar {
+    0%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(-180deg);
+    }
+}

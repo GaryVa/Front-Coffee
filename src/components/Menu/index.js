@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContext";
 import React from "react";
 import "./index.css"
@@ -6,6 +6,7 @@ import "./index.css"
 function Menu(){
     
     const {auth, logout, role} = React.useContext(AuthContext);
+    const navigate = useNavigate();
 
     if (auth.token){
         routes.splice(0, routes.length);
@@ -21,6 +22,7 @@ function Menu(){
 
     const cerrarSession = ()=>{
         logout();
+        navigate("/")
         routes.splice(0, routes.length);
         routes.push({to:"/", text:"Inicio"})
         routes.push({to:"/Coffees", text:"Coffees"})
