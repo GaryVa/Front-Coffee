@@ -14,6 +14,10 @@ function Registro(){
     const registrarUsarios = async(e) => {
         try {
             e.preventDefault();
+            if (!email.endsWith('@gmail.com')){
+                alert('email incorrecto');
+                return
+            }
             const datos = {
                 username: username,
                 password: password,
@@ -31,6 +35,7 @@ function Registro(){
     }
 
     return <>
+    <div className="contenedor">
     <div className="Session">
         <form  className="fomularioSession" onSubmit={registrarUsarios}>
             <h1 className="hSession">Registrarse</h1>
@@ -42,6 +47,7 @@ function Registro(){
                     name='username'
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Nombre"
+                    required
                 />
             </div>
             <div className="email">
@@ -52,6 +58,8 @@ function Registro(){
                     name='email'
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder='Correo electronico'
+                    required
+                    pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
                 />
             </div>
             <div className="contraseña">
@@ -62,12 +70,14 @@ function Registro(){
                     name='password'
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='Contraseña'
+                    required
                 />
             </div>
             <div>
                 <button className="botonSession">Acceder</button>
             </div>
         </form>
+    </div>
     </div>
     </>
 

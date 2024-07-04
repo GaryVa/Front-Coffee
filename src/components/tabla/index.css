@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.pagina-tabla {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-tabla {
+    width: 80%;
+    padding: 40px;
+
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th {
+    background-color: lightgray;
+    text-align: center;
+    padding: 10px;
+}
+td {
+    padding: 8px;
+}
+tr:nth-child(odd){
+    background-color: rgb(236, 235, 235);
+}
+tr:hover{
+    background-color: rgb(224, 224, 224);
+}
+
+.buton-tabla {
+    border-radius: 4px;
+    cursor: pointer;
+}
+.buton-tabla:hover {
+    background: gray;
+    color: white;
+}
+.tabla-botones {
+    display: flex;
+    justify-content: space-evenly;
+}

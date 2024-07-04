@@ -1,6 +1,7 @@
 import React from "react";
 import { BorrarCoffee, Coffees, EditarCoffee, crearCoffee} from "../services/api";
 import "./GestionCoffee.css";
+import { Tabla } from "../components/tabla";
 
 
 
@@ -59,13 +60,14 @@ function GestionCoffee(){
         e.preventDefault();
         if (id_coffee){
             try{
-                const formData = new FormData();
-                formData.append("id_coffee", id_coffee);
-                formData.append("name", nombre);
-                formData.append("price", precio);
-                formData.append("desc", desc);
-                formData.append("foto", foto);
-                const resp = await EditarCoffee(formData);
+                const envio = {
+                    id_coffee:id_coffee,
+                    description:desc,
+                    name:nombre,
+                    price:precio,
+                    image64:foto
+                }
+                const resp = await EditarCoffee(envio);
                 if (resp) {
                     setCont(cont+1);
                 }
@@ -105,6 +107,12 @@ function GestionCoffee(){
         setprecio("");
         setFoto(null);
     }
+    const coffeColumnas = [
+        { key: "idCoffee", Header:"id"},
+        { key: "name", Header:"Nombre"},
+        { key: "description", Header:"Descripcion"},
+        { key: "price", Header: "Precio"}
+    ]
 
     return <>
     <div className="gestion-Caffee">
@@ -122,6 +130,7 @@ function GestionCoffee(){
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 placeholder="Nombre"
+                required
                 />
             </div>
             <div className="form-entrada">
@@ -132,6 +141,7 @@ function GestionCoffee(){
                 value={precio}
                 onChange={(e) => setprecio(e.target.value)}
                 placeholder='Precio'
+                required
                 />
             </div>
             <div className="form-entrada">
@@ -142,15 +152,17 @@ function GestionCoffee(){
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
                 placeholder='Descripcion'
+                required
                 />
             </div>
             <div className="form-entrada">
-            <label>Imagen</label>
+            <label>{id_coffee?"":"Imagen"}</label>
             <input
-                type="file"
+                type={id_coffee?"hidden":"file"}
                 name='imagen'
                 className="button-foto"
                 onChange={File}
+                required
                 />
             </div>
             <div className="form-botones">
@@ -161,29 +173,14 @@ function GestionCoffee(){
         </div>
         <div className="Tabla">
            
-            <table border={1}>
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>descripcion</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-                <tbody>
-                    {cafes.map((item) => (
-                        <tr key={item.idCoffee}>
-                            <td>{item.name}</td>
-                            <td>{item.description}</td>
-                            <td>{item.price}</td>
-                            <td>
-                                <button onClick={()=> editar(item.idCoffee, item.name, item.description, item.price, item.image64)}>Editar</button>
-                                <button onClick={()=> Borrar(item.idCoffee)}>Borrar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <Tabla 
+                column={coffeColumnas}
+                datos={cafes}
+                action={[
+                    { label: 'Editar', onClick: (item) => editar(item.idCoffee, item.name, item.description, item.price) },
+                    { label: 'Borrar', onClick: (item) => Borrar(item.idCoffee)}
+                ]}
+            />
         
         </div>
     </div>

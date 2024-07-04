@@ -29,7 +29,7 @@ function LoginPage(){
     }
 
     return <>
-        <div className="Session">
+        <div className="contenedor">
           <form className="fomularioSession" onSubmit={login}>
           <h1 className="hSession">Iniciar Sesion</h1>
             <div>

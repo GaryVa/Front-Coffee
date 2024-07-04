@@ -12,7 +12,7 @@ function Menu(){
         routes.splice(0, routes.length);
         routes.push({to:"/", text:"Inicio"})
         routes.push({to:"/Coffees", text:"Coffees"})
-        routes.push({to:"/acercaDe", text:"Acerca de"})
+        routes.push({to:"/Acerca-de", text:"Acerca de"})
         
         if (role === "ADMIN"){
             routes.push({to:"/Gestion-coffee", text:"Gestion coffee"})
@@ -26,7 +26,7 @@ function Menu(){
         routes.splice(0, routes.length);
         routes.push({to:"/", text:"Inicio"})
         routes.push({to:"/Coffees", text:"Coffees"})
-        routes.push({to:"/acercaDe", text:"Acerca de"})
+        routes.push({to:"/Acerca-de", text:"Acerca de"})
         routes.push({to:"/login", text:"Iniciar session"})
         routes.push({to:"/registro", text:"Registrarse"})
     }
@@ -62,7 +62,7 @@ const routes = [];
 routes.splice(0, routes.length);
 routes.push({to:"/", text:"Inicio"})
 routes.push({to:"/Coffees", text:"Coffees"})
-routes.push({to:"/acercaDe", text:"Acerca de"})
+routes.push({to:"/Acerca-de", text:"Acerca de"})
 routes.push({to:"/login", text:"Iniciar session"})
 routes.push({to:"/registro", text:"Registrarse"})
 export {Menu}

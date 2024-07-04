@@ -9,8 +9,9 @@ body {
 }
 .cards {
     margin: 30px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap:16px;
 }
 .card {
     box-shadow: 1px 1px 10px gray;
@@ -21,8 +22,10 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
 }
-.card:nth-child(n+4){
+.limited .card:nth-child(n+4){
     display: none;
 }
 
@@ -46,3 +49,9 @@ p {
     margin-top: 5px;
 }
 
+.button-tarjeta {
+    margin-top: auto;
+    border-radius: 6px;
+    margin: 15px;
+    cursor:pointer;
+}

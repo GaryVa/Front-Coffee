@@ -43,34 +43,11 @@ body {
     font-size: 100%;
 }
 textarea {
-    width: 95%;
+    width: 97%;
     height: 60px;
-    padding: 10px;
     resize: none;
 }
 .Tabla {
-    width: 45%;
-    padding: 15px;
-}
-table, th, td {
-    border: 1px solid #ddd;
-}
-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-th {
-    background-color: lightgray;
-    text-align: center;
-    padding: 10px;
-}
-td {
-    padding: 8px;
-}
-tr:nth-child(odd){
-    background-color: rgb(236, 235, 235);
-}
-tr:hover{
-    background-color: rgb(224, 224, 224);
+    padding: 15px;
 }

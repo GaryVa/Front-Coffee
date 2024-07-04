@@ -1,14 +1,13 @@
-body {
+.contenedor{
+    height: 100vh;
+    padding: 0;
+    border: 0;
     margin: 0;
-}
-
-.Session {
-    height: 90vh;
+    background: linear-gradient(to left, #ffeb3b, #ff9d9d);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .fomularioSession {
     width: 340px;
     height: 440px;
@@ -52,9 +51,10 @@ body {
 }
 
 .botonSession {
-    float: right;
+    float:right;
     padding: 8px 12px;
     margin: 8px 0 0;
+    border-radius: 7px;
     font-family: sans-serif;
     border: 2px solid gray;
     background: 0;

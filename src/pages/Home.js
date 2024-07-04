@@ -20,6 +20,8 @@ function Home(){
         obtenerCoffees();
     }, []);
 
+    const button = false;
+
 
     return <>
 
@@ -34,7 +36,9 @@ function Home(){
     
         <div className="Card-contenedor">
             <CoffeeList
+                button = {button}
                 cafes = {cafes}
+                maxCofe = {3}
             />
 
         </div>

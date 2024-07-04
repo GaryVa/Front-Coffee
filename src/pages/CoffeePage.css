@@ -1,0 +1,15 @@
+.barra-busqueda input{
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+}
+.barra-busqueda {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    gap: 10px;
+}
+.barra-busqueda button {
+    border-radius: 8px;
+    cursor: pointer;
+}
