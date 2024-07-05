@@ -106,13 +106,16 @@ export async function BorrarCoffee(coffeeId){
 export async function crearTestimonios(testimonio){
     try{
         const token = localStorage.getItem('token');
+        console.log("testimonio api: ", testimonio)
         const res = await fetch("http://localhost:8080/api/testimonials/ingresar",{
             method:"POST",
-            body:testimonio,
+            body:JSON.stringify(testimonio),
             headers:{
+                'Content-Type': 'application/json',
                 'authorization':'Bearer ' + token,
             },
         });
+        console.log("respuesta: ", res)
         const data = await res.json();
         return data;
     }catch(error){
@@ -123,7 +126,7 @@ export async function crearTestimonios(testimonio){
 export async function listarTestimonios(idCoffee){
     try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:8080/api/testimonials/buscar?id_coffee=${idCoffee}`, {
+        const res = await fetch(`http://localhost:8080/api/testimonials/buscar?Id_coffee=${idCoffee}`, {
             method:"GET",
             headers: {
                 'authorization':'Bearer '+ token,

@@ -3,6 +3,8 @@ import { AuthContext } from "../auth/AuthContext";
 import { loginAccount } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "./Registro.css"
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 
 function LoginPage(){
@@ -21,9 +23,10 @@ function LoginPage(){
                 navigate("/");
             } else{
                 console.log(resp);
+                toast.error("Usuario o contraseña incorrectos");
             }
-        } catch (error) {
-            console.log("error inicio de seccion", error);
+        } catch {
+            toast.error("Error de inicio de seccion");
         }
 
     }
@@ -56,6 +59,7 @@ function LoginPage(){
               <button className="botonSession" type="submit">Acceder</button>
             </div>
           </form>
+          <ToastContainer />
         </div>
       </>
 }

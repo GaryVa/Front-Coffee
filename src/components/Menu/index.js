@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthContext";
 import React from "react";
 import "./index.css"
+import logo from "../../img/coffeeLogo.png"
 
 function Menu(){
     
@@ -34,6 +35,10 @@ function Menu(){
     return <>
     <div className="Menu">
         <div className="logo">
+            <a href="/">
+                <img src={logo} alt="Logo"></img>
+                Coofee Cafe
+            </a>
         </div>
 
         <div className="botones">

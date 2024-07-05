@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { RegistroUser } from "../services/api";
 import React from "react";
 import "./Registro.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function Registro(){
 
@@ -15,7 +16,7 @@ function Registro(){
         try {
             e.preventDefault();
             if (!email.endsWith('@gmail.com')){
-                alert('email incorrecto');
+                toast.info("Email invalido")
                 return
             }
             const datos = {
@@ -27,10 +28,10 @@ function Registro(){
             if (resp) {
                 navigate("/login")
             } else {
-                console.log("error de registro");
+                toast.error("Error de registro");
             }
         } catch (error) {
-            console.log("error: ", error);
+           toast.error("Fallo al registrar usuario")
         }
     }
 
@@ -59,7 +60,6 @@ function Registro(){
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder='Correo electronico'
                     required
-                    pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
                 />
             </div>
             <div className="contraseña">
@@ -78,6 +78,7 @@ function Registro(){
             </div>
         </form>
     </div>
+    <ToastContainer />
     </div>
     </>
 

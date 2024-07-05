@@ -3,8 +3,6 @@ import { CoffeeList } from "../components/coffees";
 import { Coffees, buscarCoffee } from "../services/api";
 import "./CoffeePage.css"
 
-
-
 function Coffee() {
     const [cafes, setCafes] = React.useState([]);
     const [nombre, setNombre] = React.useState("");
@@ -26,7 +24,6 @@ function Coffee() {
     const buscarCofe = async (value) => {
         const data = await buscarCoffee(value);
         setCafes(data);
-
     }
     const asignarNombre = (e) => {
         setNombre(e.target.value);
@@ -42,9 +39,7 @@ function Coffee() {
 
     const button = true;
 
-
     return <>
-
         <div className="barra-busqueda">
             <input
                 type="text"
@@ -63,7 +58,6 @@ function Coffee() {
                 cafes = {cafes}
             />
         </div>
-
     </>
 }
 

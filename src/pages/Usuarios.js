@@ -1,7 +1,8 @@
 import React from "react";
 import { Tabla } from "../components/tabla";
 import { Bloquear, ListarUsuarios } from "../services/api";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function Usuarios(){
     const [usuarios, setUsuarios] = React.useState([]);
@@ -27,10 +28,11 @@ function Usuarios(){
             }
             const resp = await Bloquear(envio);
             if (resp) {
+                toast("Usuario desabilitado");
                 setContador(contador+1)
             }
         } catch (error) {
-            console.log("no desabilitado");
+            toast.error("Error al desabilitar al usuario");
         }
     }
     const bloqueo = async (username, accion) => {
@@ -43,9 +45,10 @@ function Usuarios(){
             const resp = await Bloquear(envio);
             if (resp) {
                 setContador(contador+1)
+                toast("Usuario bloqueado");
             }
         } catch (error) {
-            console.log("no desabilitado");
+            toast.error("Error al bloquear al usuario");
         }
     }
 
@@ -66,6 +69,7 @@ function Usuarios(){
                 { label: 'Bloquear', onClick: (item) => bloqueo(item.username, item.locked) }
             ]}
         />
+        <ToastContainer />
     </>
 }
 

@@ -2,6 +2,8 @@ import React from "react";
 import { BorrarCoffee, Coffees, EditarCoffee, crearCoffee} from "../services/api";
 import "./GestionCoffee.css";
 import { Tabla } from "../components/tabla";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
@@ -35,7 +37,6 @@ function GestionCoffee(){
         setDesc(descripcion);
         setprecio(precio);
         setFoto(imagen64);
-        console.log("id", id);
     }
 
     const Borrar = async (idCoffee) => {
@@ -43,11 +44,10 @@ function GestionCoffee(){
             const resp = await BorrarCoffee(idCoffee);
             if (resp) {
                 setCont(cont+1);
+                toast("Cofe eliminado");
             }
-            console.log("id: ",idCoffee);
-            console.log("coffee Eliminado", resp);
         }catch (error) {
-            console.log("error al eliminar", error);
+            toast.error("Error al borrar cofe");
         }
     }
 
@@ -65,17 +65,16 @@ function GestionCoffee(){
                     description:desc,
                     name:nombre,
                     price:precio,
-                    image64:foto
                 }
                 const resp = await EditarCoffee(envio);
                 if (resp) {
                     setCont(cont+1);
+                    toast("Cofe editado con exito")
                 }
     
-                console.log("Editado", resp);
                 limpiarFormulario();
             }catch (error){
-                console.log("no creado", error);
+                toast("No se pudo editar el cafe");
             }
         } else {
             try{
@@ -86,12 +85,11 @@ function GestionCoffee(){
                 formData.append("foto", foto);
                 const resp = await crearCoffee(formData);
                 if (resp) {
+                    toast("cofe agregado con exito")
                     setCont(cont+1);
                 }
-    
-                console.log("creado", resp);
             }catch (error){
-                console.log("no creado", error);
+                toast.error("No se ha podido crear el cofe");
             }
 
         }
@@ -147,7 +145,7 @@ function GestionCoffee(){
             <div className="form-entrada">
             <label>Descripcion</label>
             <textarea
-                type="Text"
+                type="text"
                 name='precio'
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
@@ -183,6 +181,7 @@ function GestionCoffee(){
             />
         
         </div>
+        <ToastContainer />
     </div>
     </>
 }

@@ -13,3 +13,8 @@
     border-radius: 8px;
     cursor: pointer;
 }
+.barra-busqueda button:hover {
+    background: gray;
+    color: white;
+    transition: 0.3s;
+}
