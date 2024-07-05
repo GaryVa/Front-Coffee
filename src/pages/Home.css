@@ -74,3 +74,10 @@
 .link-nosotros a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width:768px) {
+    .Portada {
+        display: flex;
+        flex-direction: column;
+    }
+}

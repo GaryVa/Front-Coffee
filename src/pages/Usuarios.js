@@ -61,6 +61,7 @@ function Usuarios(){
 
 
     return <>
+    <div className="tabla-usuarios">
         <Tabla
             column={userColumnas}
             datos={usuarios}
@@ -70,6 +71,7 @@ function Usuarios(){
             ]}
         />
         <ToastContainer />
+    </div>
     </>
 }
 

@@ -4,7 +4,7 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .pagina-tabla {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
 }
@@ -47,5 +47,26 @@ tr:hover{
 }
 .tabla-botones {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 15px;
+}
+
+@media screen and (max-width:720px) {
+    .tabla-botones {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 5px;
+    }
+    .pagina-tabla {
+        display: flex;
+        justify-content: start;
+    }
+    td {
+        padding: 2px;
+    }
+    th {
+        padding: 2px;
+    }
+    
 }

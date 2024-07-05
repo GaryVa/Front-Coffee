@@ -5,12 +5,14 @@ body {
 }
 
 .Menu {
-    background-color: rgb(112, 68, 11);
+    background: rgb(112, 68, 11);
     color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    max-height: 40px;
+    width: auto;
 }
 .logo a{
     font-size: 40px;
@@ -48,4 +50,22 @@ body {
 .buton.active {
     font-weight: bold;
     color: green;
+}
+
+@media screen and (max-width:768px) {
+    .logo a{
+        font-size: 20px;
+    }
+    .botones{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width:570px) {
+    .logo {
+        display: none;
+    }
 }
